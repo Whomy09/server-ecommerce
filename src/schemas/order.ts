@@ -26,3 +26,24 @@ export const createOrderSchema = z.object({
 });
 
 export type BodyCreateOrder = z.infer<typeof createOrderSchema>["body"];
+
+export const getOrderByIdSchema = z.object({
+  params: z.object({
+    orderId: z.string(),
+  }),
+});
+
+export const updateOrderSchema = z.object({
+  params: z.object({
+    orderId: z.string(),
+  }),
+  body: orderSchema
+    .pick({
+      products: true,
+      totalAmount: true,
+      status: true,
+    })
+    .partial(),
+});
+
+export type BodyUpdateOrder = z.infer<typeof updateOrderSchema>["body"];
