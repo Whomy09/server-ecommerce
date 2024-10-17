@@ -145,6 +145,13 @@ export class FirestoreService {
       .delete();
   }
 
+  async deleteDocument<Collection extends keyof Models>(
+    collection: Collection,
+    docId: string
+  ) {
+    await this.db.collection(collection).doc(docId).delete();
+  }
+
   async getSubDocument<
     Collection extends keyof Models,
     SubCollection extends keyof Models

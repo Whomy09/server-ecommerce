@@ -49,3 +49,15 @@ export const updateProductSchema = z.object({
 });
 
 export type BodyUpdateProduct = z.infer<typeof updateProductSchema>["body"];
+
+export const getProductByIdSchema = z.object({
+  params: z.object({
+    productId: z.string(),
+  }),
+});
+
+export const deleteProductSchema = z.object({
+  params: z.object({
+    productId: z.string(),
+  }),
+});

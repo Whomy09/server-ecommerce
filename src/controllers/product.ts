@@ -3,6 +3,8 @@ import {
   addNewProduct,
   editProduct,
   findAllProducts,
+  findProductById,
+  removeProduct,
 } from "../services/product";
 
 export const createProduct: Handler = async (req, res) => {
@@ -38,6 +40,28 @@ export const updateProduct: Handler = async (req, res) => {
     await editProduct(productId, data, file);
 
     res.status(200).json({ message: "Update product successfully" });
+  } catch (error: any) {
+    res.status(400).json({ message: error.toString() });
+  }
+};
+
+export const getProductById: Handler = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const product = await findProductById(productId);
+    res.status(200).json(product);
+  } catch (error: any) {
+    res.status(400).json({ message: error.toString() });
+  }
+};
+
+export const deleteProduct: Handler = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+
+    await removeProduct(productId);
+
+    res.status(200).json({ message: "Delete product successfully" });
   } catch (error: any) {
     res.status(400).json({ message: error.toString() });
   }

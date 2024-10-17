@@ -44,3 +44,14 @@ export const editProduct = async (
     ...(imageUrl && { imageUrl }),
   });
 };
+
+export const findProductById = async (docId: string) => {
+  return await new FirestoreService().getDocument({
+    collection: "products",
+    docId,
+  });
+};
+
+export const removeProduct = async (docId: string) => {
+  await new FirestoreService().deleteDocument("products", docId);
+};
