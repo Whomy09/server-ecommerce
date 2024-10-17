@@ -53,3 +53,9 @@ export const getOrdersSchema = z.object({
     userId: z.string().optional(),
   }),
 });
+
+export const deleteOrderSchema = z.object({
+  params: z.object({
+    orderId: z.string(),
+  }),
+});

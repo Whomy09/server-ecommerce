@@ -37,3 +37,7 @@ export const findOrders = async (userId?: string) => {
   const ordersSnap = await ordersRef.where("userId", "==", userId).get();
   return ordersSnap.docs.map((order) => order.data());
 };
+
+export const removeOrder = async (orderId: string) => {
+  await new FirestoreService().deleteDocument("orders", orderId);
+};
