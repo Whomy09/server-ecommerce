@@ -47,3 +47,9 @@ export const updateOrderSchema = z.object({
 });
 
 export type BodyUpdateOrder = z.infer<typeof updateOrderSchema>["body"];
+
+export const getOrdersSchema = z.object({
+  query: z.object({
+    userId: z.string().optional(),
+  }),
+});

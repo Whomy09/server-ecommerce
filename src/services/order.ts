@@ -25,3 +25,15 @@ export const findOrderById = async (orderId: string) => {
 export const editOrder = async (orderId: string, data: BodyUpdateOrder) => {
   await new FirestoreService().updateDocument("orders", orderId, data);
 };
+
+export const findOrders = async (userId?: string) => {
+  let ordersRef = new FirestoreService().getCollectionRef("orders");
+
+  if (!userId) {
+    const ordersSnap = await ordersRef.get();
+    return ordersSnap.docs.map((order) => order.data());
+  }
+
+  const ordersSnap = await ordersRef.where("userId", "==", userId).get();
+  return ordersSnap.docs.map((order) => order.data());
+};
