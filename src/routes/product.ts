@@ -1,11 +1,17 @@
-import multer from 'multer';
+import multer from "multer";
 import { Router } from "express";
-import { getProducts } from "../controllers/product";
+import validateResource from "../middleware";
+import { createProduct } from "../controllers/product";
+import { createProductSchema } from "../schemas/product";
 
 const router = Router();
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.get("/", upload.single('file'), getProducts);
+router.post(
+  "/",
+  [upload.single("file"), validateResource(createProductSchema)],
+  createProduct
+);
 
 export default router;

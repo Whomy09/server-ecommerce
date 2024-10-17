@@ -11,6 +11,8 @@ export const productSchema = z.object({
   createdAt: stringToDate,
 });
 
+export type Product = z.infer<typeof productSchema>;
+
 export const createProductSchema = z.object({
   body: z.object({
     name: z.string(),
@@ -22,5 +24,7 @@ export const createProductSchema = z.object({
       .transform((val) => parseFloat(val)),
     description: z.string(),
   }),
-  file: multerFileSchema
+  file: multerFileSchema,
 });
+
+export type BodyCreateProduct = z.infer<typeof createProductSchema>['body'];
