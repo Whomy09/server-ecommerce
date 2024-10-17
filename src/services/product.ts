@@ -21,3 +21,8 @@ export const addNewProduct = async (
     createdAt: new Date(),
   });
 };
+
+export const findAllProducts = async () => {
+  const products = await new FirestoreService().getCollection('products');
+  return products
+}

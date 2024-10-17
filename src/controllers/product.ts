@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import { addNewProduct } from "../services/product";
+import { addNewProduct, findAllProducts } from "../services/product";
 
 export const createProduct: Handler = async (req, res) => {
   try {
@@ -11,6 +11,15 @@ export const createProduct: Handler = async (req, res) => {
     await addNewProduct(data, file);
 
     res.status(200).json({ message: "Create product successfully" });
+  } catch (error: any) {
+    res.status(400).json({ message: error.toString() });
+  }
+};
+
+export const getProducts: Handler = async (req, res) => {
+  try {
+    const products = await findAllProducts();
+    res.status(200).json(products);
   } catch (error: any) {
     res.status(400).json({ message: error.toString() });
   }
