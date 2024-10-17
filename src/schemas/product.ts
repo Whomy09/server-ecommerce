@@ -6,7 +6,7 @@ export const productSchema = z.object({
   id: z.string(),
   name: z.string(),
   price: z.number(),
-  imageUrl: z.string(),
+  imageUrl: z.string().nullable(),
   description: z.string(),
   createdAt: stringToDate,
 });
@@ -27,4 +27,25 @@ export const createProductSchema = z.object({
   file: multerFileSchema,
 });
 
-export type BodyCreateProduct = z.infer<typeof createProductSchema>['body'];
+export type BodyCreateProduct = z.infer<typeof createProductSchema>["body"];
+
+export const updateProductSchema = z.object({
+  params: z.object({
+    productId: z.string(),
+  }),
+  body: z
+    .object({
+      name: z.string(),
+      price: z
+        .string()
+        .refine((val) => !isNaN(parseFloat(val)), {
+          message: "Price must be a valid number",
+        })
+        .transform((val) => parseFloat(val)),
+      description: z.string(),
+    })
+    .partial(),
+  file: multerFileSchema.optional(),
+});
+
+export type BodyUpdateProduct = z.infer<typeof updateProductSchema>["body"];

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { BodyCreateProduct } from "../schemas/product";
+import { BodyCreateProduct, BodyUpdateProduct } from "../schemas/product";
 import { StorageServices } from "../core/StorageServices";
 import { FirestoreService } from "../core/FirestoreServices";
 
@@ -23,6 +23,24 @@ export const addNewProduct = async (
 };
 
 export const findAllProducts = async () => {
-  const products = await new FirestoreService().getCollection('products');
-  return products
-}
+  const products = await new FirestoreService().getCollection("products");
+  return products;
+};
+
+export const editProduct = async (
+  productId: string,
+  data: BodyUpdateProduct,
+  image?: Express.Multer.File
+) => {
+  const imageUrl = !!image
+    ? await new StorageServices().uploadFile(
+        `/products/${uuidv4()}`,
+        image.buffer
+      )
+    : null;
+
+  await new FirestoreService().updateDocument("products", productId, {
+    ...data,
+    ...(imageUrl && { imageUrl }),
+  });
+};
