@@ -14,9 +14,9 @@ export const createProduct: Handler = async (req, res) => {
 
     if (!file) throw new Error("File not found");
 
-    await addNewProduct(data, file);
+    const product = await addNewProduct(data, file);
 
-    res.status(200).json({ message: "Create product successfully" });
+    res.status(200).json(product);
   } catch (error: any) {
     res.status(400).json({ message: error.toString() });
   }
@@ -37,9 +37,9 @@ export const updateProduct: Handler = async (req, res) => {
     const data = req.body;
     const file = req.file;
 
-    await editProduct(productId, data, file);
+    const product = await editProduct(productId, data, file);
 
-    res.status(200).json({ message: "Update product successfully" });
+    res.status(200).json(product);
   } catch (error: any) {
     res.status(400).json({ message: error.toString() });
   }
