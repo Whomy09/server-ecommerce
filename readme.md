@@ -1,29 +1,6 @@
-# API Liquidación de polizas
-
-## Badges
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
-
-## Index
-
-- [Badges](#badges)
-- [Descripción](#descripción)
-- [Características](#características)
-- [API de referencia](#api-de-referencia)
-- [Acceso al proyecto](#acceso-al-proyecto)
-- [Stack tecnológico](#stack-tecnológico)
-- [Tests](#tests)
-- [Autores](#autores)
-- [Licensia](#licensia)
-- [Conclusión](#conclusión)
+# API E-commerce
 
 ## Descripción
-
-Este proyecto es una API para la liquidación de pólizas de seguros, que permite calcular el valor de las primas asociadas a distintos tipos de
-coberturas (amparos) según los datos de los asegurados. Desarrollado en Java utilizando Spring Boot, el sistema recibe los datos de un asegurado,
-incluyendo su tipo y número de identificación, y el valor asegurado, y devuelve un desglose de las primas correspondientes a las coberturas aplicables.
 
 Esta API está diseñada para gestionar la creación de productos y órdenes en un e-commerce. Desarrollada con TypeScript para asegurar un código robusto y mantenible, la API utiliza Express como framework para manejar las rutas y solicitudes HTTP. La validación de los datos se realiza a través de Zod, lo que garantiza que los datos enviados cumplan con los esquemas esperados, reduciendo errores y asegurando consistencia. Además, la API se integra con Firebase para gestionar la base de datos en tiempo real, proporcionando almacenamiento seguro y escalable, así como autenticación y notificaciones si es necesario.
 
@@ -64,10 +41,6 @@ Esta API está diseñada para gestionar la creación de productos y órdenes en 
 ## Autores
 
 - [@Whomy09](https://github.com/Whomy09)
-
-## Licensia
-
-- [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Conclusión
 
